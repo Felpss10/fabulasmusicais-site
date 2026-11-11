@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="img/assinatura.webp">
+<title>Aulas Fábulas Musicais</title>
+<meta name="description" content="Aulas de Teoria Musical, Teclado e Violão com Felipe Santos e a turma das Fábulas Musicais. Peça sua cotação no WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Playpen+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: um ateliê de papelão em tiras horizontais. Palco no topo, lousa do vídeo, turma, aulas por nível
+   (Ateliê → Floresta → Espaço), o professor e o balcão do WhatsApp. Visual único e claro, por escolha da marca. */
+:root{
+  color-scheme: light;
+  /* papel e papelão */
+  --papel:#FCFAF7; --apoio:#F3E8DA; --placa:#D89D6B; --papelao:#B5865E; --papelao-escuro:#714D34;
+  --texto:#1C110D; --suave:#6A5546; --contorno:#121010;
+  /* ação */
+  --acao:#3976AA; --zap:#1C8A4C; --zap-escuro:#136A39; --zap-texto:#FFFFFF;
+  /* letras do logo */
+  --vermelho:#DF5041; --laranja:#E67B37; --amarelo:#F1C24A; --ouro:#DDB449; --verde:#72AF52;
+  --turquesa:#56B4D4; --azul:#4699CD; --roxo:#A84C9E; --lilas:#9B65B5; --rosa:#E47697;
+  /* cenários */
+  --floresta:#49975E; --floresta-escura:#336441; --ceu:#A1D6DB; --cosmos:#2A3057; --nebulosa:#315D9C;
+  /* tipografia */
+  --f-titulo:"Lilita One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --f-mao:"Playpen Sans","Comic Sans MS","Chalkboard SE",system-ui,sans-serif;
+  --f-texto:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
+  /* forma */
+  --raio-placa:4px; --raio-recorte:14px; --raio-adesivo:28px;
+  --sombra-papelao:0 2px 0 var(--papelao-escuro),0 10px 22px -8px rgba(28,17,13,.35);
+  --sombra-papel:0 1px 0 rgba(113,77,52,.25),0 8px 20px -10px rgba(28,17,13,.3);
+  --kraft-bg:repeating-linear-gradient(90deg,rgba(113,77,52,.10) 0 2px,transparent 2px 9px),repeating-linear-gradient(0deg,rgba(255,240,220,.08) 0 1px,transparent 1px 5px),#D89D6B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--papel);color:var(--texto);font-family:var(--f-texto);font-size:17px;line-height:1.6;margin:0;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--acao)}
+h1,h2,h3{font-family:var(--f-titulo);font-weight:400;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--acao);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,104px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- peças da marca ---------- */
+.kraft{background:var(--kraft-bg)}
+.plaquinha{display:inline-flex;align-items:center;gap:.55em;font-family:var(--f-mao);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--texto);
+  background:var(--kraft-bg);padding:.45em .9em;border-radius:var(--raio-placa);box-shadow:var(--sombra-papelao);transform:rotate(-1.2deg)}
+.plaquinha img{width:18px;height:18px}
+.titulo-sec{font-size:clamp(2rem,4.4vw,3.2rem);margin-top:.5em;max-width:18ch}
+.lead{font-size:1.12rem;color:var(--suave);max-width:60ch;margin-top:.9em}
+.mao{font-family:var(--f-mao)}
+
+/* título recortado: cada letra ganha um material do logo */
+.recorte{display:inline-block;font-family:var(--f-titulo);text-transform:uppercase;line-height:1;letter-spacing:.02em;
+  filter:drop-shadow(3px 0 0 var(--papelao)) drop-shadow(-3px 0 0 var(--papelao)) drop-shadow(0 3px 0 var(--papelao)) drop-shadow(0 -3px 0 var(--papelao)) drop-shadow(2px 4px 0 var(--papelao-escuro))}
+.recorte span{display:inline-block;color:var(--c,#DF5041)}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .recorte span{background-image:var(--t);background-size:90px;background-color:var(--c);-webkit-background-clip:text;background-clip:text;color:transparent}
+}
+.recorte span:nth-child(odd){transform:rotate(-3deg) translateY(1px)}
+.recorte span:nth-child(3n){transform:rotate(4deg)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--f-texto);font-weight:900;font-size:1.05rem;text-decoration:none;
+  border-radius:999px;padding:.95em 1.5em;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;line-height:1.2;text-align:center}
+.btn svg{width:1.35em;height:1.35em;flex:none}
+.btn-zap{background:var(--zap);color:var(--zap-texto);box-shadow:0 4px 0 var(--zap-escuro),0 12px 22px -10px rgba(19,106,57,.7)}
+.btn-zap:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:0 6px 0 var(--zap-escuro),0 16px 26px -10px rgba(19,106,57,.7)}
+.btn-zap:active{transform:translateY(2px);box-shadow:0 2px 0 var(--zap-escuro)}
+.btn-papel{background:var(--papel);color:var(--texto);box-shadow:inset 0 0 0 2px var(--papelao),0 3px 0 var(--papelao)}
+.btn-papel:hover{transform:translateY(-2px)}
+.btn-lg{font-size:1.18rem;padding:1.05em 1.8em}
+
+/* ---------- barra do topo ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--papel)}
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(252,250,247,.94);backdrop-filter:blur(6px);border-bottom:2px dashed rgba(181,134,94,.5)}
+.topo .wrap{display:flex;align-items:center;gap:20px;height:68px}
+.topo .marca img{height:44px;width:auto}
+.topo nav{display:flex;gap:22px;margin-left:auto}
+.topo nav a{color:var(--texto);text-decoration:none;font-weight:800;font-size:.95rem}
+.topo nav a:hover{color:var(--acao)}
+.topo .btn{padding:.6em 1.05em;font-size:.92rem}
+@media (max-width:860px){.topo nav{display:none}.topo .btn{margin-left:auto}}
+@media (max-width:560px){.topo .btn span.longo{display:none}}
+
+/* ---------- herói: o palco ---------- */
+.heroi{position:relative;background:var(--placa) url(img/palco.webp) center 62%/cover no-repeat;padding-block:clamp(28px,5vw,64px) 0;overflow:hidden}
+.heroi .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(20px,3vw,48px);align-items:end}
+.cartao-heroi{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papelao);padding:clamp(22px,3vw,40px);transform:rotate(-.8deg);
+  margin-bottom:clamp(40px,6vw,84px);position:relative;min-width:0}
+.cartao-heroi::before{content:"";position:absolute;top:-14px;left:38%;width:110px;height:28px;background:rgba(241,194,74,.75);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.cartao-heroi h1{font-size:clamp(2.15rem,4.5vw,3.7rem);margin-top:.55em;color:var(--texto)}
+.cartao-heroi h1 em{font-style:normal;color:var(--vermelho);position:relative;white-space:nowrap}
+.cartao-heroi h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.08em;height:.16em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C40 2 80 11 120 5 S180 3 198 7' fill='none' stroke='%23F1C24A' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;z-index:-1}
+.cartao-heroi .sub{font-size:1.12rem;color:var(--suave);margin-top:1em;max-width:46ch}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.5em}
+.micro{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:1.1em;font-size:.9rem;color:var(--suave);font-weight:700}
+.micro span{display:inline-flex;align-items:center;gap:6px}
+.micro img{width:16px;height:16px}
+.palco{display:flex;flex-direction:column;align-items:center;min-width:0}
+.palco .logo{width:min(100%,520px);filter:drop-shadow(0 10px 14px rgba(28,17,13,.35));animation:balanco 6s ease-in-out infinite}
+.elenco{display:flex;align-items:flex-end;justify-content:center;height:clamp(210px,27vw,370px);margin-top:clamp(4px,1vw,14px);width:100%}
+.elenco img{height:100%;width:auto;filter:drop-shadow(0 10px 8px rgba(28,17,13,.35));transform-origin:bottom center;animation:pulo 3.4s ease-in-out infinite}
+.elenco .barbatus{height:58%;margin-right:-4%;animation-delay:-.4s}
+.elenco .delio{height:76%;margin-right:-5%;animation-delay:-1.1s}
+.elenco .snob{height:86%;z-index:2;animation-delay:-2s}
+.elenco .lia{height:100%;margin-left:-6%;animation-delay:-.7s}
+.elenco .tulio{height:90%;margin-left:-5%;animation-delay:-1.6s}
+@keyframes pulo{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-1.2deg)}}
+@keyframes balanco{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1deg)}}
+@media (max-width:900px){
+  .heroi .wrap{grid-template-columns:1fr}
+  .palco{order:-1}
+  .cartao-heroi{margin-bottom:34px;margin-top:-6px;z-index:3}
+  .elenco{height:clamp(190px,52vw,320px)}
+  .palco .logo{width:min(84%,400px)}
+}
+
+/* faixa de papelão com números */
+.faixa{position:relative;z-index:2;padding-block:26px}
+.faixa::before,.faixa::after{content:"";position:absolute;left:0;right:0;height:10px;background:radial-gradient(circle at 8px -2px,transparent 7px,var(--papelao-escuro) 7.5px,var(--papelao-escuro) 8.5px,transparent 9px) 0 0/16px 10px repeat-x}
+.faixa::before{top:0}.faixa::after{bottom:0;transform:scaleY(-1)}
+.faixa .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.numero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px}
+.numero b{font-family:var(--f-titulo);font-weight:400;font-size:clamp(2rem,4vw,2.9rem);line-height:1;color:var(--texto)}
+.numero span{font-family:var(--f-mao);font-weight:600;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto);margin-top:.35em}
+@media (max-width:700px){.faixa .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- vídeo na lousa ---------- */
+.video{background:var(--papel)}
+.cabeca{display:flex;flex-direction:column;align-items:flex-start}
+.cabeca.centro{align-items:center;text-align:center}
+.cabeca.centro .titulo-sec,.cabeca.centro .lead{margin-left:auto;margin-right:auto}
+.cena-moldura{margin-top:clamp(28px,4vw,48px);position:relative;border-radius:var(--raio-recorte);overflow:hidden;box-shadow:var(--sombra-papelao);aspect-ratio:16/9;max-width:100%;background:var(--placa)}
+.cena{position:absolute;inset:0;background:url(img/lousa.webp) center/100% 100% no-repeat}
+.lousa-slot{position:absolute;left:22.7%;top:17.8%;width:54.5%;height:52.5%;display:flex;align-items:center;justify-content:center}
+.lousa-slot .tela{position:relative;height:100%;aspect-ratio:16/9;max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2%;text-align:center;color:var(--texto);background:transparent;border:0;padding:0 4%;font:inherit;cursor:pointer}
+.lousa-slot video,.lousa-slot iframe{width:100%;height:100%;border:0;background:#000;border-radius:4px;object-fit:cover}
+.tela .play{width:clamp(48px,8vw,104px);aspect-ratio:1;border-radius:50%;background:var(--acao);display:grid;place-items:center;box-shadow:0 4px 0 #23507a,0 10px 18px -8px rgba(0,0,0,.5);transition:transform .2s}
+.tela:hover .play{transform:scale(1.07) rotate(-4deg)}
+.tela .play svg{width:42%;height:42%;margin-left:8%}
+.tela .giz-1{font-family:var(--f-mao);font-weight:700;font-size:clamp(.8rem,1.9vw,1.6rem);line-height:1.15}
+.tela .giz-2{font-family:var(--f-mao);font-weight:400;font-size:clamp(.62rem,1.15vw,1rem);color:var(--suave)}
+.espiao{position:absolute;bottom:0;height:62%;width:auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.35));pointer-events:none}
+.espiao.esq{left:3%}.espiao.dir{right:3%}
+@media (max-width:700px){
+  .cena-moldura{aspect-ratio:100/60.9}
+  .cena{inset:auto;left:-33.25%;top:-11.25%;width:166.67%;aspect-ratio:16/9;height:auto}
+  .espiao{display:none}
+}
+.video-pos{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin-top:28px}
+.video-pos p{font-family:var(--f-mao);font-size:1.15rem;max-width:52ch}
+
+/* ---------- por que desistem ---------- */
+.porque{background:var(--apoio)}
+.porque .grade{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);margin-top:clamp(28px,4vw,48px);align-items:start}
+.dores{display:flex;flex-direction:column;gap:16px}
+.dor{background:var(--papel);padding:18px 20px 18px 56px;border-radius:6px;box-shadow:var(--sombra-papel);position:relative;font-weight:700}
+.dor:nth-child(1){transform:rotate(-1.2deg)}.dor:nth-child(2){transform:rotate(.8deg);margin-left:6%}.dor:nth-child(3){transform:rotate(-.5deg);margin-left:2%}
+.dor::before{content:"";position:absolute;left:18px;top:50%;width:22px;height:22px;margin-top:-11px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4 L20 20 M20 4 L4 20' stroke='%23DF5041' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.dor small{display:block;font-weight:400;color:var(--suave);font-size:.95rem;margin-top:2px}
+.solucao{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papelao);padding:clamp(22px,3vw,36px);position:relative}
+.solucao h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+.solucao ul{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:16px}
+.solucao li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.solucao li img{width:34px;height:34px}
+.solucao li b{display:block}
+.solucao .tutor{position:absolute;right:-10px;bottom:-12px;width:clamp(90px,12vw,140px);filter:drop-shadow(0 6px 6px rgba(0,0,0,.25));transform:rotate(4deg)}
+.pra-quem{margin-top:clamp(36px,5vw,56px)}
+.pra-quem h3{font-size:1.6rem}
+.checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:16px}
+.check{background:var(--papel);border:2px dashed var(--papelao);border-radius:var(--raio-recorte);padding:16px 16px 16px 50px;position:relative;font-weight:700;line-height:1.4}
+.check::before{content:"";position:absolute;left:14px;top:16px;width:26px;height:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 13 L9 19 L21 5' fill='none' stroke='%2372AF52' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (max-width:980px){.porque .grade{grid-template-columns:1fr}.checks{grid-template-columns:repeat(2,minmax(0,1fr))}.solucao .tutor{display:none}}
+@media (max-width:520px){.checks{grid-template-columns:1fr}}
+
+/* ---------- a turma ---------- */
+.turma .trilho{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:56px 4px 24px;margin-top:clamp(8px,2vw,20px)}
+.ficha{scroll-snap-align:start;background:var(--papel);border-radius:var(--raio-adesivo);box-shadow:var(--sombra-papelao);display:flex;flex-direction:column;transition:transform .25s ease;min-width:0}
+.ficha:hover{transform:rotate(-1.2deg) translateY(-4px)}
+.ficha:nth-child(even):hover{transform:rotate(1.2deg) translateY(-4px)}
+.ficha .fundo{height:230px;border-radius:var(--raio-adesivo) var(--raio-adesivo) 0 0;background-color:var(--c);background-image:var(--t);background-size:120px;position:relative;display:flex;justify-content:center;align-items:flex-end;border-bottom:4px solid var(--papelao)}
+.ficha .fundo img{height:280px;width:auto;max-width:none;margin-bottom:-6px;filter:drop-shadow(0 8px 6px rgba(28,17,13,.35))}
+.ficha .info{padding:18px 18px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ficha h3{font-size:1.75rem}
+.ficha .especie{font-family:var(--f-mao);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--suave)}
+.ficha .papel{font-size:.98rem}
+.ficha blockquote{margin:auto 0 0;font-family:var(--f-mao);font-size:.95rem;background:var(--apoio);border-radius:14px;padding:10px 14px;position:relative;line-height:1.45}
+.ficha blockquote::before{content:"";position:absolute;top:-8px;left:22px;border:8px solid transparent;border-top:0;border-bottom-color:var(--apoio)}
+.dica-trilho{font-family:var(--f-mao);color:var(--suave);font-size:.95rem;margin-top:4px}
+@media (min-width:1180px){.dica-trilho{display:none}}
+
+/* ---------- aulas ---------- */
+.aulas{background:var(--apoio);position:relative}
+.abas{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3vw,36px)}
+.aba{display:flex;align-items:center;gap:12px;background:var(--papel);border:0;border-radius:999px;padding:6px 22px 6px 6px;font:inherit;font-weight:900;font-size:1.05rem;color:var(--texto);cursor:pointer;box-shadow:inset 0 0 0 2px rgba(181,134,94,.55);transition:transform .15s}
+.aba img{width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--apoio)}
+.aba:hover{transform:translateY(-2px)}
+.aba[aria-selected="true"]{background:var(--kraft-bg);box-shadow:var(--sombra-papelao);transform:rotate(-1deg)}
+.painel{margin-top:28px}
+.painel-topo{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.painel-topo .recorte{font-size:clamp(2.6rem,7vw,5rem)}
+.painel-topo .resumo{font-size:1.12rem;margin-top:16px;max-width:56ch}
+.pilulas{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pilula{background:var(--papel);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.88rem;box-shadow:inset 0 0 0 2px rgba(181,134,94,.5)}
+.guia{display:flex;align-items:flex-end;gap:14px;justify-content:center}
+.guia img{height:clamp(170px,20vw,250px);width:auto;filter:drop-shadow(0 8px 6px rgba(28,17,13,.3))}
+.guia .balao{background:var(--papel);border-radius:18px;padding:14px 16px;font-family:var(--f-mao);font-size:1rem;max-width:240px;box-shadow:var(--sombra-papel);position:relative;margin-bottom:34%;line-height:1.4}
+.guia .balao::after{content:"";position:absolute;left:-10px;bottom:16px;border:10px solid transparent;border-left:0;border-right-color:var(--papel)}
+.guia .balao b{display:block;font-family:var(--f-titulo);font-weight:400;font-size:.95rem;color:var(--suave);margin-bottom:2px}
+@media (max-width:860px){.painel-topo{grid-template-columns:1fr}.guia{justify-content:flex-start}.guia .balao{margin-bottom:28%}}
+
+.aula-tempo{margin-top:28px;background:var(--papel);border-radius:var(--raio-recorte);padding:18px 20px;box-shadow:var(--sombra-papel)}
+.aula-tempo h4{margin:0 0 12px;font-family:var(--f-mao);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:.85rem;color:var(--suave)}
+.barra{display:flex;gap:4px;border-radius:10px;overflow:hidden}
+.barra div{height:38px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;color:var(--texto);min-width:0}
+.barra-leg{display:flex;gap:4px;margin-top:8px}
+.barra-leg span{font-size:.82rem;line-height:1.3;color:var(--suave);font-weight:700;min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.barra-leg{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}.barra-leg span{flex:none!important}
+  .barra-leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:6px}}
+
+.niveis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px}
+.nivel{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papelao);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.nivel .topo-nivel{padding:16px 18px 18px;position:relative;min-height:112px;display:flex;flex-direction:column;justify-content:flex-end}
+.nivel.atelie .topo-nivel{background-color:var(--papel);background-image:radial-gradient(circle at 92% 22%,var(--amarelo) 0 13px,transparent 14px),radial-gradient(circle at 80% 14%,var(--azul) 0 7px,transparent 8px),radial-gradient(circle at 72% 30%,var(--rosa) 0 5px,transparent 6px),radial-gradient(circle at 62% 12%,var(--verde) 0 6px,transparent 7px),radial-gradient(circle at 50% 24%,var(--roxo) 0 4px,transparent 5px);border-bottom:3px dashed var(--papelao)}
+.nivel.floresta .topo-nivel{background:var(--ceu);border-bottom:10px solid var(--floresta)}
+.nivel.espaco .topo-nivel{background-color:var(--cosmos);background-image:radial-gradient(circle at 18% 28%,var(--ouro) 0 2.5px,transparent 3px),radial-gradient(circle at 76% 18%,#FCFAF7 0 2px,transparent 2.5px),radial-gradient(circle at 60% 30%,var(--ouro) 0 3px,transparent 3.5px),radial-gradient(circle at 92% 46%,#FCFAF7 0 1.5px,transparent 2px),radial-gradient(circle at 44% 14%,#FCFAF7 0 1.5px,transparent 2px)}
+.nivel .etq{align-self:flex-start;font-family:var(--f-mao);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;background:var(--kraft-bg);padding:.35em .7em;border-radius:var(--raio-placa);color:var(--texto);transform:rotate(-1.5deg);box-shadow:0 2px 0 var(--papelao-escuro)}
+.nivel.espaco .etq{background:#E9DED3;color:#3A2C3F}
+.nivel h3{font-size:1.65rem;margin-top:10px;color:var(--texto)}
+.nivel.espaco h3{color:#FCFAF7}
+.nivel .corpo{padding:18px 18px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.nivel .dur{font-weight:800;font-size:.92rem;color:var(--suave)}
+.nivel ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.nivel li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;line-height:1.45;font-size:.98rem}
+.nivel li img{width:18px;height:18px;margin-top:3px}
+.nivel .final{margin-top:auto;background:var(--apoio);border-radius:10px;padding:12px 14px;font-size:.95rem}
+.nivel .final b{display:block;font-family:var(--f-mao);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--suave)}
+@media (max-width:980px){.niveis{grid-template-columns:1fr}}
+
+.selos{margin-top:28px;background:var(--papel);border-radius:var(--raio-recorte);padding:18px 20px;box-shadow:var(--sombra-papel)}
+.selos p{font-weight:700}
+.selos .linha{display:flex;gap:6px;overflow-x:auto;padding:12px 2px 6px}
+.selos .linha img{width:64px;height:64px;flex:none;transition:transform .2s}
+.selos .linha img:hover{transform:scale(1.15) rotate(-6deg)}
+.painel-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:28px}
+.painel-cta p{font-family:var(--f-mao);font-size:1.05rem;color:var(--suave);max-width:48ch}
+
+/* ---------- jornada ---------- */
+.jornada .livros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px);margin-top:clamp(32px,4vw,52px)}
+.livro{display:flex;flex-direction:column;gap:14px;min-width:0}
+.livro img{border-radius:6px 12px 12px 6px;box-shadow:-6px 0 0 var(--papelao-escuro) inset,var(--sombra-papelao);aspect-ratio:3/4;object-fit:cover;width:100%;transition:transform .3s}
+.livro:nth-child(1) img{transform:rotate(-2.5deg)}.livro:nth-child(2) img{transform:rotate(1.5deg) translateY(-10px)}.livro:nth-child(3) img{transform:rotate(-1deg)}
+.livro:hover img{transform:rotate(0) translateY(-8px)}
+.livro .etq{font-family:var(--f-mao);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;color:var(--suave)}
+.livro h3{font-size:1.5rem}
+.livro p{color:var(--suave)}
+@media (max-width:760px){.jornada .livros{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto}}
+
+/* ---------- sobre ---------- */
+.sobre{background:var(--kraft-bg);position:relative}
+.sobre .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.colagem{position:relative;aspect-ratio:1/1.08;max-width:520px;width:100%;margin:0 auto}
+.foto{position:absolute;background:#fff;padding:10px 10px 38px;box-shadow:var(--sombra-papelao);border-radius:3px}
+.foto img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.foto figcaption{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-family:var(--f-mao);font-size:.85rem;color:var(--texto)}
+.foto::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(86,180,212,.55);transform:rotate(-3deg)}
+.foto.f1{left:14%;top:4%;width:58%;height:70%;transform:rotate(-3deg);z-index:2}
+.foto.f2{right:0;top:30%;width:40%;height:52%;transform:rotate(5deg);z-index:3}
+.foto.f3{left:0;bottom:0;width:38%;height:44%;transform:rotate(-7deg);z-index:3}
+.foto.f2::before{background:rgba(228,118,151,.55)}.foto.f3::before{background:rgba(241,194,74,.7)}
+.papel-sobre{background:var(--papel);border-radius:var(--raio-recorte);padding:clamp(24px,3.4vw,44px);box-shadow:var(--sombra-papelao);min-width:0}
+.papel-sobre .titulo-sec{max-width:none}
+.papel-sobre p{margin-top:1em}
+.selos-prof{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.selo-prof{display:inline-flex;align-items:center;gap:8px;background:var(--apoio);border-radius:999px;padding:7px 14px 7px 8px;font-weight:800;font-size:.92rem;box-shadow:inset 0 0 0 2px rgba(181,134,94,.45)}
+.selo-prof img{width:22px;height:22px}
+.citacao{margin-top:24px;font-family:var(--f-mao);font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.4;border-left:5px solid var(--amarelo);padding-left:16px}
+.assinatura{margin-top:10px;font-family:var(--f-mao);font-weight:700;color:var(--suave)}
+@media (max-width:900px){.sobre .grade{grid-template-columns:1fr}}
+
+/* ---------- como começar + montador ---------- */
+.comecar .grade{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);margin-top:clamp(28px,4vw,44px);align-items:start}
+.passos{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:22px;counter-reset:p}
+.passos li{display:grid;grid-template-columns:60px minmax(0,1fr);gap:16px;align-items:start;counter-increment:p}
+.passos li::before{content:counter(p);font-family:var(--f-titulo);font-size:2rem;width:60px;height:60px;display:grid;place-items:center;border-radius:50%;color:var(--texto);background:var(--c);box-shadow:0 3px 0 var(--papelao-escuro)}
+.passos li:nth-child(1){--c:var(--amarelo)}.passos li:nth-child(2){--c:var(--turquesa)}.passos li:nth-child(3){--c:var(--rosa)}
+.passos h3{font-size:1.4rem}
+.passos p{color:var(--suave);margin-top:4px}
+.urgencia{margin-top:26px;background:var(--apoio);border-radius:var(--raio-recorte);padding:16px 18px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center}
+.urgencia img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:var(--papel)}
+.urgencia p{font-family:var(--f-mao);font-size:1rem;line-height:1.45}
+.montador{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papelao);padding:clamp(20px,3vw,32px);border:3px solid var(--papelao);position:relative}
+.montador::before{content:"";position:absolute;top:-16px;right:30px;width:120px;height:30px;background:rgba(114,175,82,.6);transform:rotate(3deg)}
+.montador h3{font-size:1.7rem}
+.montador .dica{color:var(--suave);font-size:.95rem;margin-top:4px}
+fieldset{border:0;padding:0;margin:20px 0 0;min-width:0}
+legend{font-weight:900;font-size:1rem;margin-bottom:8px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:8px 15px;border-radius:999px;background:var(--apoio);font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:inset 0 0 0 2px transparent;transition:transform .12s,background .12s;user-select:none}
+.chip span:hover{transform:translateY(-1px)}
+.chip input:checked + span{background:var(--kraft-bg);box-shadow:inset 0 0 0 2px var(--papelao-escuro);transform:rotate(-1.5deg)}
+.chip input:focus-visible + span{outline:3px solid var(--acao);outline-offset:2px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo input{font:inherit;font-weight:700;padding:11px 14px;border-radius:10px;border:2px solid var(--papelao);background:var(--papel);color:var(--texto);width:100%}
+.campo input::placeholder{color:#9b8677;font-weight:400}
+.previa{margin-top:20px;background:#E7F4E9;border-radius:14px 14px 14px 4px;padding:14px 16px;font-size:.98rem;line-height:1.5;position:relative;color:var(--texto);border:1px solid #CBE5D0}
+.previa b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--zap-escuro);margin-bottom:4px}
+.montador .btn{width:100%;margin-top:16px}
+
+/* ---------- dúvidas ---------- */
+.duvidas{background:var(--apoio)}
+.duvidas .grade{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,64px);align-items:start}
+.duvidas .tutor{width:min(220px,60%);margin-top:28px;filter:drop-shadow(0 8px 6px rgba(28,17,13,.3))}
+.faq{display:flex;flex-direction:column;gap:12px}
+details{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papel)}
+summary{cursor:pointer;list-style:none;padding:18px 54px 18px 20px;font-weight:900;font-size:1.05rem;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--f-titulo);font-size:1.6rem;color:var(--papelao-escuro);transition:transform .2s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details .resp{padding:0 20px 20px;color:var(--suave)}
+@media (max-width:860px){.duvidas .grade{grid-template-columns:1fr}.duvidas .tutor{display:none}}
+
+/* ---------- chamada final ---------- */
+.final{background:var(--kraft-bg);position:relative;overflow:hidden}
+.final .placa{background:var(--papel);border-radius:var(--raio-adesivo);box-shadow:var(--sombra-papelao);padding:clamp(26px,4vw,52px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center;position:relative}
+.final h2{font-size:clamp(2.1rem,4.6vw,3.5rem)}
+.final .sub{font-size:1.12rem;color:var(--suave);margin-top:14px;max-width:48ch}
+.contato{display:flex;flex-direction:column;gap:14px;align-items:stretch}
+.numero-zap{display:flex;align-items:center;gap:10px;background:var(--apoio);border-radius:14px;padding:12px 14px;flex-wrap:wrap}
+.numero-zap img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.numero-zap .n{font-family:var(--f-titulo);font-size:1.5rem;user-select:all;line-height:1.1}
+.numero-zap small{display:block;color:var(--suave);font-weight:700;font-size:.82rem}
+.copiar{margin-left:auto;font:inherit;font-weight:800;font-size:.85rem;background:var(--papel);border:2px solid var(--papelao);border-radius:999px;padding:6px 14px;cursor:pointer;color:var(--texto)}
+.final .turminha{display:flex;justify-content:center;align-items:flex-end;height:150px;margin-top:6px}
+.final .turminha img{height:100%;width:auto;margin:0 -10px;filter:drop-shadow(0 6px 5px rgba(0,0,0,.25))}
+.final .turminha img:nth-child(1){height:70%}.final .turminha img:nth-child(2){height:88%}.final .turminha img:nth-child(4){height:92%}
+@media (max-width:860px){.final .placa{grid-template-columns:1fr}}
+
+/* ---------- material e plataforma ---------- */
+.material{background:var(--apoio)}
+.material .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);margin-top:clamp(28px,4vw,48px);align-items:start}
+.bloco-mat{display:flex;flex-direction:column;gap:18px;min-width:0}
+.bloco-mat h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+.bloco-mat .etq{font-family:var(--f-mao);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;color:var(--suave)}
+.livro-aberto{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;align-items:start;background:var(--papel);border-radius:var(--raio-recorte);padding:18px;box-shadow:var(--sombra-papel)}
+.livro-aberto img{border-radius:4px 8px 8px 4px;box-shadow:-4px 0 0 var(--papelao-escuro) inset,var(--sombra-papelao);transform:rotate(-3deg)}
+.livro-aberto p{font-size:.98rem}
+.carta{font-family:var(--f-mao);font-size:.95rem;background:var(--apoio);border-radius:10px;padding:10px 12px;margin-top:10px;line-height:1.45}
+.partes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.partes li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:12px;align-items:stretch;background:var(--papel);border-radius:8px;padding:10px 14px 10px 0;overflow:hidden;box-shadow:0 1px 0 rgba(113,77,52,.2)}
+.partes li::before{content:"";background:var(--c)}
+.partes b{display:inline;font-weight:900}
+.partes span{color:var(--suave)}
+.metodo{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-family:var(--f-mao);font-weight:600;font-size:.95rem}
+.metodo span{background:var(--papel);border-radius:999px;padding:5px 12px;box-shadow:inset 0 0 0 2px rgba(181,134,94,.45)}
+.metodo i{font-style:normal;color:var(--papelao-escuro)}
+.janela{background:var(--papel);border-radius:var(--raio-recorte);box-shadow:var(--sombra-papelao);overflow:hidden;border:2px solid var(--papelao)}
+.janela .barra-nav{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#EADBC8;border-bottom:2px solid var(--papelao)}
+.janela .barra-nav i{width:11px;height:11px;border-radius:50%;background:var(--c)}
+.janela .barra-nav span{margin-left:8px;font-size:.8rem;font-weight:800;color:var(--suave);background:var(--papel);border-radius:999px;padding:3px 12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.janela .app{display:grid;grid-template-columns:170px minmax(0,1fr)}
+.janela aside{background:var(--apoio);padding:14px 10px;display:flex;flex-direction:column;gap:4px;font-size:.82rem;font-weight:800}
+.janela aside .curso{font-family:var(--f-titulo);font-weight:400;font-size:1rem;padding:0 6px 6px}
+.janela aside div.it{display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:8px;color:var(--suave)}
+.janela aside div.it img{width:22px;height:22px}
+.janela aside div.it.on{background:var(--papel);color:var(--texto);box-shadow:inset 0 0 0 2px var(--papelao)}
+.janela aside div.it.bloq{opacity:.55}
+.janela .conteudo{padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.janela .conteudo h4{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:1.15rem}
+.janela .conteudo img{border-radius:8px;width:100%}
+.progresso{display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--suave)}
+.progresso div{flex:1;height:10px;border-radius:999px;background:var(--apoio);overflow:hidden}
+.progresso div::after{content:"";display:block;height:100%;width:29%;background:var(--verde);border-radius:999px}
+.recursos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.recurso{background:var(--papel);border-radius:var(--raio-recorte);padding:14px 16px;box-shadow:var(--sombra-papel);display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem;line-height:1.45}
+.recurso img{width:28px;height:28px}
+.recurso b{display:block}
+.nota-plat{margin-top:12px;font-size:.85rem;color:var(--suave)}
+@media (max-width:980px){.material .grade{grid-template-columns:1fr}}
+@media (max-width:560px){.janela .app{grid-template-columns:1fr}.janela aside{flex-direction:row;overflow-x:auto}.janela aside .curso{display:none}.janela aside div.it{flex:none}.recursos{grid-template-columns:1fr}.livro-aberto{grid-template-columns:84px minmax(0,1fr)}}
+
+footer{background:var(--texto);color:#E9DED3;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;justify-content:space-between}
+footer img{height:52px;width:auto}
+footer .assin{font-family:var(--f-mao);font-size:1.05rem;color:var(--amarelo)}
+footer small{color:#BFAE9F;font-size:.85rem}
+
+/* botão flutuante */
+.flutua{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;width:62px;height:62px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;
+  box-shadow:0 4px 0 var(--zap-escuro),0 12px 26px -8px rgba(0,0,0,.45);transition:transform .2s}
+.flutua svg{width:32px;height:32px}
+.flutua:hover{transform:scale(1.08) rotate(-6deg)}
+.flutua .bolha{position:absolute;right:72px;bottom:12px;background:var(--papel);color:var(--texto);font-family:var(--f-mao);font-weight:600;font-size:.9rem;white-space:nowrap;padding:8px 12px;border-radius:12px;box-shadow:var(--sombra-papel);pointer-events:none}
+@media (max-width:560px){.flutua .bolha{display:none}}
+
+/* ---------- ajustes de espaçamento para tablet e celular ---------- */
+@media (max-width:900px){
+  .comecar .grade{grid-template-columns:1fr}
+  .montador{margin-top:12px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding-block:44px}
+  .titulo-sec{font-size:clamp(1.75rem,8vw,2.2rem)}
+  .lead{font-size:1rem;margin-top:.7em}
+  .plaquinha{font-size:.74rem}
+  /* herói */
+  .heroi{padding-block:18px 0}
+  .cartao-heroi{padding:22px 18px 20px;transform:none;margin-bottom:28px}
+  .cartao-heroi::before{left:30%;width:90px;height:22px;top:-11px}
+  .cartao-heroi h1{font-size:clamp(1.85rem,8.6vw,2.3rem)}
+  .cartao-heroi .sub{font-size:1rem}
+  .acoes{flex-direction:column;align-items:stretch;gap:10px}
+  .acoes .btn{width:100%}
+  .btn-lg{font-size:1.05rem;padding:.95em 1.2em}
+  .micro{flex-direction:column;gap:6px}
+  .faixa{padding-block:20px}
+  .numero b{font-size:2rem}
+  .numero span{font-size:.78rem}
+  /* vídeo */
+  .cena-moldura{margin-top:24px}
+  .video-pos{margin-top:20px}
+  .video-pos p{font-size:1rem}
+  .video-pos .btn{width:100%}
+  /* por que */
+  .porque .grade{margin-top:24px;gap:28px}
+  .dor,.dor:nth-child(2),.dor:nth-child(3){margin-left:0;transform:none;padding:16px 16px 16px 50px}
+  .dor::before{left:16px}
+  .solucao{padding:20px 18px}
+  .solucao li{grid-template-columns:28px minmax(0,1fr);gap:10px}
+  .solucao li img{width:28px;height:28px}
+  .pra-quem{margin-top:32px}
+  .pra-quem h3{font-size:1.35rem}
+  .check{padding:14px 14px 14px 46px}
+  .check::before{left:12px;top:14px;width:24px;height:24px}
+  /* turma */
+  .turma .trilho{grid-auto-columns:78%;gap:14px;padding:48px 2px 18px}
+  .ficha .fundo{height:200px}
+  .ficha .fundo img{height:240px}
+  .ficha .info{padding:16px}
+  /* aulas */
+  .abas{gap:8px}
+  .aba{font-size:.95rem;padding:5px 16px 5px 5px}
+  .aba img{width:38px;height:38px}
+  .painel{margin-top:22px}
+  .painel-topo .recorte{font-size:clamp(2.4rem,13vw,3.4rem)}
+  .painel-topo .resumo{font-size:1rem}
+  .guia img{height:150px}
+  .guia .balao{font-size:.92rem;padding:12px 14px;margin-bottom:22%}
+  .aula-tempo,.selos{padding:16px}
+  .barra div{height:32px;font-size:.78rem}
+  .niveis{gap:16px;margin-top:22px}
+  .nivel .topo-nivel{min-height:96px;padding:14px 16px 16px}
+  .nivel h3{font-size:1.45rem}
+  .nivel .corpo{padding:16px}
+  .painel-cta .btn{width:100%}
+  /* jornada: as três capas lado a lado, deslizando */
+  .jornada .livros{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:68%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;max-width:none;margin-top:28px;padding:10px 2px 14px}
+  .livro{scroll-snap-align:start;gap:10px}
+  .livro h3{font-size:1.3rem}
+  .livro p{font-size:.95rem}
+  .livro:nth-child(n) img{transform:none}
+  /* material */
+  .material .grade{margin-top:24px;gap:36px}
+  .livro-aberto{padding:14px;gap:14px}
+  .partes li{padding:9px 12px 9px 0;font-size:.95rem}
+  .janela .conteudo{padding:12px}
+  .recursos{gap:10px}
+  .recurso{padding:12px 14px}
+  /* sobre */
+  .sobre .grade{gap:28px}
+  .colagem{max-width:340px}
+  .papel-sobre{padding:22px 18px}
+  .selos-prof{gap:8px}
+  .selo-prof{font-size:.85rem}
+  .citacao{font-size:1.15rem;padding-left:12px}
+  /* como começar */
+  .comecar .grade{margin-top:24px;gap:28px}
+  .passos{gap:18px}
+  .passos li{grid-template-columns:48px minmax(0,1fr);gap:14px}
+  .passos li::before{width:48px;height:48px;font-size:1.6rem}
+  .passos h3{font-size:1.2rem}
+  .urgencia{grid-template-columns:52px minmax(0,1fr);padding:14px}
+  .urgencia img{width:52px;height:52px}
+  .urgencia p{font-size:.92rem}
+  .montador{padding:20px 16px;border-width:2px}
+  .montador h3{font-size:1.45rem}
+  fieldset{margin-top:16px}
+  .chip span{padding:8px 13px;font-size:.9rem}
+  /* dúvidas */
+  summary{padding:16px 46px 16px 16px;font-size:.98rem}
+  details .resp{padding:0 16px 16px}
+  /* final */
+  .final .placa{padding:24px 18px;border-radius:var(--raio-recorte)}
+  .final h2{font-size:clamp(1.8rem,8vw,2.2rem)}
+  .final .sub{font-size:1rem}
+  .final .turminha{height:120px}
+  .numero-zap .n{font-size:1.2rem}
+  footer .wrap{flex-direction:column;align-items:flex-start;gap:10px}
+  .flutua{width:56px;height:56px;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .flutua svg{width:28px;height:28px}
+}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="zap" viewBox="0 0 24 24"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.7l4.8-1.3A9.8 9.8 0 1 0 12 2.2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.6 7.2c.3-.4.6-.4.9-.4h.6c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.1.7l-.6.7c-.1.2-.1.4 0 .6.6 1.1 1.5 2 2.6 2.6.2.1.4.1.6 0l.7-.6c.2-.2.5-.2.7-.1l1.9.8c.3.1.4.3.4.5v.6c0 .3-.1.7-.5 1-.6.4-1.3.6-2 .5-3.3-.5-6-3.2-6.5-6.5-.1-.8.1-1.5.5-2.1z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Fábulas Musicais, voltar ao início"><img src="img/assinatura.webp" alt="Fábulas Musicais" width="94" height="44"></a>
+    <nav aria-label="Seções">
+      <a href="#video">Vídeo</a>
+      <a href="#turma">A turma</a>
+      <a href="#aulas">Aulas</a>
+      <a href="#material">Material</a>
+      <a href="#sobre">Sobre mim</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn-zap" href="#comecar"><svg aria-hidden="true"><use href="#zap"/></svg><span>Pedir cotação<span class="longo"> no WhatsApp</span></span></a>
+  </div>
+</header>
+
+<main id="inicio">
+<!-- ===== HERÓI ===== -->
+<section class="heroi" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="cartao-heroi">
+      <span class="plaquinha"><img src="img/rab/colcheia.webp" alt="">Aulas – Teoria, Teclado e Violão<img src="img/rab/estrela-amarela.webp" alt=""></span>
+      <h1 id="h1">Aprenda música com <em>histórias</em> que você nunca mais esquece.</h1>
+      <p class="sub">Aulas de Teoria Musical, Teclado e Violão comigo, o Felipe, e com a turma das Fábulas Musicais. Um método completo, do primeiro acorde à composição, contado como uma fábula.</p>
+      <div class="acoes">
+        <a class="btn btn-zap btn-lg" href="#comecar"><svg aria-hidden="true"><use href="#zap"/></svg>Quero minha cotação</a>
+        <a class="btn btn-papel" href="#aulas">Ver o que vou aprender</a>
+      </div>
+      <div class="micro">
+        <span><img src="img/rab/estrela-azul.webp" alt="">Começa do zero</span>
+        <span><img src="img/rab/estrela-amarela.webp" alt="">Para crianças e adultos</span>
+        <span><img src="img/rab/asterisco.webp" alt="">Cotação sem compromisso</span>
+      </div>
+    </div>
+    <div class="palco">
+      <img class="logo" src="img/logo.webp" alt="Fábulas Musicais" width="1100" height="616">
+      <div class="elenco" aria-label="A turma das Fábulas Musicais">
+        <img class="barbatus" src="img/barbatus.webp" alt="Sr. Barbatus, o sagui-imperador" width="422" height="640">
+        <img class="delio" src="img/delio.webp" alt="Délio, a lontra" width="324" height="640">
+        <img class="snob" src="img/snob.webp" alt="Snob Portenho, o suricato" width="286" height="640">
+        <img class="lia" src="img/lia.webp" alt="Lia, a flamingo" width="225" height="640">
+        <img class="tulio" src="img/tulio.webp" alt="Túlio, o burro" width="244" height="640">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="faixa kraft" role="list" aria-label="O método em números">
+  <div class="wrap">
+    <div class="numero" role="listitem"><b>72</b><span>aulas de Teoria</span></div>
+    <div class="numero" role="listitem"><b>144</b><span>aulas de Teclado</span></div>
+    <div class="numero" role="listitem"><b>144</b><span>aulas de Violão</span></div>
+    <div class="numero" role="listitem"><b>3</b><span>níveis, do ateliê às estrelas</span></div>
+  </div>
+</div>
+
+<!-- ===== VÍDEO ===== -->
+<section class="video" id="video" aria-labelledby="t-video">
+  <div class="wrap">
+    <div class="cabeca centro">
+      <span class="plaquinha"><img src="img/rab/tracos-de-movimento.webp" alt="">Aperte o play</span>
+      <h2 class="titulo-sec" id="t-video">A turma tem um recado pra você</h2>
+      <p class="lead">Eu e os personagens explicamos, numa conversa, como funcionam as aulas e o que você vai tocar já nas primeiras semanas.</p>
+    </div>
+    <!--
+      COMO COLOCAR O VÍDEO: no fim da página, no <script>, preencha
+        VIDEO.arquivo = "video/apresentacao.mp4"   (vídeo enviado junto do site)
+      ou
+        VIDEO.youtube = "ID_DO_VIDEO"             (só funciona quando o site estiver no seu próprio domínio)
+    -->
+    <div class="cena-moldura">
+      <div class="cena">
+        <div class="lousa-slot" id="lousa-slot">
+          <button class="tela" type="button" id="tela-video" aria-label="Vídeo de apresentação">
+            <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5 L20 12 L6 20.5 Z" fill="#fff"/></svg></span>
+            <span class="giz-1">O Felipe e a turma<br>conversando com você</span>
+            <span class="giz-2" id="tela-aviso">Vídeo em produção. Enquanto isso, me chama no WhatsApp!</span>
+          </button>
+        </div>
+      </div>
+      <img class="espiao esq" src="img/snob.webp" alt="">
+      <img class="espiao dir" src="img/lia.webp" alt="">
+    </div>
+    <div class="video-pos">
+      <p>"Errou? O Délio também. Vamos de novo." Aqui o erro faz parte da história.</p>
+      <a class="btn btn-zap js-zap" data-curso="" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Quero conversar com o Felipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POR QUE ===== -->
+<section class="porque" aria-labelledby="t-porque">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="plaquinha"><img src="img/rab/asterisco.webp" alt="">Seja sincero</span>
+      <h2 class="titulo-sec" id="t-porque">Você já começou a estudar música e parou no meio?</h2>
+      <p class="lead">Quase sempre o problema não é falta de talento. É o jeito como a música chega até você.</p>
+    </div>
+    <div class="grade">
+      <div class="dores">
+        <div class="dor">Vídeo solto, sem sequência<small>Hoje um acorde, amanhã uma escala, e nada se conecta.</small></div>
+        <div class="dor">Teoria que parece matemática<small>Regra decorada some da cabeça na semana seguinte.</small></div>
+        <div class="dor">Não saber o que estudar em casa<small>Sem tarefa e sem correção, o instrumento vira enfeite.</small></div>
+      </div>
+      <div class="solucao">
+        <h3>Nas Fábulas Musicais é diferente</h3>
+        <ul>
+          <li><img src="img/rab/estrela-amarela.webp" alt=""><div><b>Cada conteúdo vira uma cena.</b>O Snob explica a regra, o Délio erra junto com você, o Túlio segura o tempo. A regra vira lembrança.</div></li>
+          <li><img src="img/rab/colcheias-ligadas.webp" alt=""><div><b>Um caminho completo, aula por aula.</b>Você sempre sabe onde está e qual é o próximo passo, do nível 1 ao 3.</div></li>
+          <li><img src="img/rab/estrela-azul.webp" alt=""><div><b>Tarefa, plano de estudo e correção.</b>Toda aula termina com o que praticar. No instrumento, você me manda um vídeo curto e eu corrijo.</div></li>
+          <li><img src="img/rab/asterisco.webp" alt=""><div><b>Recitais e selos de conquista.</b>Recital interno a cada etapa e um selo por aula: o progresso fica visível para o aluno e para a família.</div></li>
+        </ul>
+        <img class="tutor" src="img/delio.webp" alt="">
+      </div>
+    </div>
+    <div class="pra-quem">
+      <h3>É para você se…</h3>
+      <div class="checks">
+        <div class="check">Nunca estudou música e quer começar do jeito certo</div>
+        <div class="check">Toca de ouvido e quer entender o que está tocando</div>
+        <div class="check">Serve no louvor e quer tocar com segurança na banda</div>
+        <div class="check">Quer para seu filho uma aula que ele tenha vontade de ir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TURMA ===== -->
+<section class="turma" id="turma" aria-labelledby="t-turma">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="plaquinha"><img src="img/rab/estrela-amarela.webp" alt="">A turma</span>
+      <h2 class="titulo-sec" id="t-turma">Cinco amigos para estudar com você</h2>
+      <p class="lead">Cada um tem um instrumento, um jeito de falar e um papel na história. Você vai rir com eles, errar com eles e aprender com eles.</p>
+    </div>
+    <div class="trilho" id="trilho"></div>
+    <p class="dica-trilho">Arraste para o lado para conhecer todos.</p>
+  </div>
+</section>
+
+<!-- ===== AULAS ===== -->
+<section class="aulas" id="aulas" aria-labelledby="t-aulas">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="plaquinha"><img src="img/rab/colcheia.webp" alt="">As aulas</span>
+      <h2 class="titulo-sec" id="t-aulas">Escolha por onde começar</h2>
+      <p class="lead">Três cursos, cada um em três níveis. Veja exatamente o que você vai aprender em cada etapa.</p>
+    </div>
+    <div class="abas" role="tablist" aria-label="Cursos" id="abas"></div>
+    <div class="painel" id="painel" role="tabpanel" tabindex="0"></div>
+  </div>
+</section>
+
+<!-- ===== JORNADA ===== -->
+<section class="jornada" aria-labelledby="t-jornada">
+  <div class="wrap">
+    <div class="cabeca centro">
+      <span class="plaquinha"><img src="img/rab/estrela-azul.webp" alt="">A jornada</span>
+      <h2 class="titulo-sec" id="t-jornada">Do ateliê às estrelas, uma nota de cada vez</h2>
+      <p class="lead">Cada nível tem seu cenário e seu material ilustrado com a turma. O aluno sabe onde está e enxerga aonde vai chegar.</p>
+    </div>
+    <div class="livros">
+      <div class="livro"><img src="img/capa1.webp" alt="Capa do Módulo 1 de Teoria: a turma no ateliê" width="560" height="750"><span class="etq">Nível 1 · Básico</span><h3>O Ateliê</h3><p>Tudo começa na mesa: pegar o material e montar as primeiras peças. Leitura, ritmo e os primeiros acordes.</p></div>
+      <div class="livro"><img src="img/capa2.webp" alt="Capa do Módulo 2 de Teoria: a turma acampada na floresta" width="560" height="750"><span class="etq">Nível 2 · Intermediário</span><h3>A Floresta</h3><p>Hora de sair e explorar: harmonia, levadas, improviso e tocar em banda.</p></div>
+      <div class="livro"><img src="img/capa3.webp" alt="Capa do Módulo 3 de Teoria: a turma de astronauta no espaço" width="560" height="749"><span class="etq">Nível 3 · Avançado</span><h3>O Espaço</h3><p>Chegar às estrelas: arranjo, composição, solo e direção musical.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MATERIAL E PLATAFORMA ===== -->
+<section class="material" id="material" aria-labelledby="t-material">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="plaquinha"><img src="img/rab/colcheias-ligadas.webp" alt="">Material e plataforma</span>
+      <h2 class="titulo-sec" id="t-material">Um livro que conta uma história e uma plataforma só sua</h2>
+      <p class="lead">Nada de apostila xerocada. O aluno estuda com material próprio das Fábulas Musicais e continua a aula em casa, na plataforma.</p>
+    </div>
+    <div class="grade">
+      <div class="bloco-mat">
+        <span class="etq">Material didático</span>
+        <h3>Livro 1 · A Canção do Ateliê</h3>
+        <div class="livro-aberto">
+          <img src="img/capa1.webp" alt="Capa do Livro 1 de Teoria Musical" width="560" height="750">
+          <div>
+            <p>No livro de Teoria 1, o Sr. Barbatus é o professor da turma e tem um mistério antigo: uma canção que ele começou há muitos anos e nunca terminou. Aula após aula, o aluno aprende o que falta para ajudar a turma a terminá-la.</p>
+            <p class="carta">"Não tenha pressa. Errou? O Délio também. Vamos de novo. Devagar a gente aprende para sempre." Sr. Barbatus</p>
+          </div>
+        </div>
+        <p>Toda aula do livro tem as mesmas partes, então o aluno sempre sabe onde encontrar cada coisa:</p>
+        <ol class="partes">
+          <li style="--c:#F1C24A"><div><b>Nesta aula você vai</b> <span>os objetivos, para saber aonde vamos chegar</span></div></li>
+          <li style="--c:#E47697"><div><b>A história</b> <span>o capítulo da aventura, com o conteúdo acontecendo na prática</span></div></li>
+          <li style="--c:#56B4D4"><div><b>Entendendo de verdade</b> <span>a explicação com figuras, tabelas e partituras</span></div></li>
+          <li style="--c:#72AF52"><div><b>Mãos à obra</b> <span>exercícios para a sala e para casa</span></div></li>
+          <li style="--c:#9B65B5"><div><b>Ouvido atento</b> <span>percepção, solfejo e movimento</span></div></li>
+          <li style="--c:#E67B37"><div><b>Para casa</b> <span>a tarefa da semana</span></div></li>
+          <li style="--c:#DF5041"><div><b>Selo conquistado</b> <span>o selo da aula e o que você já consegue fazer</span></div></li>
+        </ol>
+        <div>
+          <p style="font-weight:800;margin-bottom:8px">O som vem antes do símbolo:</p>
+          <div class="metodo"><span>experimentar</span><i>→</i><span>comparar</span><i>→</i><span>nomear</span><i>→</i><span>escrever</span></div>
+          <p style="margin-top:10px;color:var(--suave);font-size:.95rem">O aluno primeiro ouve, canta e sente; depois dá nome e só então lê e escreve. É o caminho de métodos consagrados da educação musical, como os de Kodály e Edwin Gordon.</p>
+        </div>
+      </div>
+
+      <div class="bloco-mat">
+        <span class="etq">Plataforma do aluno</span>
+        <h3>A aula continua em casa</h3>
+        <div class="janela" aria-label="Exemplo da plataforma do aluno">
+          <div class="barra-nav"><i style="--c:#DF5041"></i><i style="--c:#F1C24A"></i><i style="--c:#72AF52"></i><span>fabulas-musicais.web.app · Trilha Teoria 1</span></div>
+          <div class="app">
+            <aside>
+              <span class="curso">Teoria 1</span>
+              <div class="it"><img src="img/selos/selo_06.webp" alt="">Aula 6 · Ponto</div>
+              <div class="it"><img src="img/selos/selo_07.webp" alt="">Aula 7 · Semitom</div>
+              <div class="it on"><img src="img/selos/selo_08.webp" alt="">Aula 8 · Escala</div>
+              <div class="it bloq"><img src="img/selos/selo_09.webp" alt="">Aula 9 · Sustenidos</div>
+              <div class="it bloq"><img src="img/selos/selo_10.webp" alt="">Aula 10 · Bemóis</div>
+            </aside>
+            <div class="conteudo">
+              <h4>Aula 8 · Escala maior</h4>
+              <img src="img/lousa_aula.webp" alt="Lousa da aula 8 com a escala de Dó maior e seus graus" width="1200" height="675">
+              <div class="progresso"><span>Etapa A1</span><div></div><span>7 de 24</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="recursos">
+          <div class="recurso"><img src="img/rab/estrela-amarela.webp" alt=""><div><b>Acesso com código</b>Eu entrego seu código, você entra uma vez e a sua trilha fica liberada.</div></div>
+          <div class="recurso"><img src="img/rab/colcheia.webp" alt=""><div><b>Cada aula no lugar certo</b>Lousa, figuras e tarefa da semana para rever quando quiser.</div></div>
+          <div class="recurso"><img src="img/rab/estrela-azul.webp" alt=""><div><b>Teoria, Teclado ou Violão</b>O aluno escolhe a trilha do seu curso.</div></div>
+          <div class="recurso"><img src="img/rab/asterisco.webp" alt=""><div><b>Eu acompanho seu progresso</b>Vejo o andamento de cada aluno e ajusto as próximas aulas.</div></div>
+        </div>
+        <p class="nota-plat">A plataforma é fechada: só alunos entram. Episódios animados da turma estão em produção.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOBRE ===== -->
+<section class="sobre" id="sobre" aria-labelledby="t-sobre">
+  <div class="wrap grade">
+    <div class="colagem">
+      <figure class="foto f1"><img src="img/felipe_sorriso.webp" alt="Felipe sorrindo em frente à estante de livros"><figcaption>eu e meus livros</figcaption></figure>
+      <figure class="foto f2"><img src="img/felipe_violao.webp" alt="Felipe tocando violão no estúdio"><figcaption>no estúdio</figcaption></figure>
+      <figure class="foto f3"><img src="img/felipe_palco.webp" alt="Felipe contando uma história ao microfone para crianças"><figcaption>contando história</figcaption></figure>
+    </div>
+    <div class="papel-sobre">
+      <span class="plaquinha"><img src="img/rab/estrela-amarela.webp" alt="">Seu professor</span>
+      <h2 class="titulo-sec" id="t-sobre">Prazer, eu sou o Felipe</h2>
+      <p>Sou formado pela EMESP Tom Jobim, produtor musical e um leitor apaixonado. Passo a semana entre estúdio, partituras e livros, e foi juntando essas três coisas que nasceram as Fábulas Musicais.</p>
+      <p>Eu acredito que histórias são a melhor forma de aprender qualquer coisa. A gente esquece uma regra decorada, mas não esquece o dia em que o Délio errou o Sol e tentou de novo. Por isso cada conteúdo chega por um personagem e uma situação, com um método sério por trás.</p>
+      <div class="selos-prof">
+        <span class="selo-prof"><img src="img/rab/estrela-amarela.webp" alt="">Formado pela EMESP Tom Jobim</span>
+        <span class="selo-prof"><img src="img/rab/colcheia.webp" alt="">Produtor musical</span>
+        <span class="selo-prof"><img src="img/rab/asterisco.webp" alt="">Amante de literatura</span>
+        <span class="selo-prof"><img src="img/rab/estrela-azul.webp" alt="">Criador das Fábulas Musicais</span>
+      </div>
+      <p class="citacao">"Histórias são a melhor forma de aprender qualquer coisa. Música não é exceção."</p>
+      <p class="assinatura">Felipe Santos</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMO COMEÇAR ===== -->
+<section class="comecar" id="comecar" aria-labelledby="t-comecar">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="plaquinha"><img src="img/rab/tracos-de-movimento.webp" alt="">Como começar</span>
+      <h2 class="titulo-sec" id="t-comecar">Três passos até a sua primeira aula</h2>
+    </div>
+    <div class="grade">
+      <div>
+        <ol class="passos">
+          <li><div><h3>Me chama no WhatsApp</h3><p>Monte a mensagem aqui na página em 20 segundos ou só mande um "oi".</p></div></li>
+          <li><div><h3>A gente conversa</h3><p>Seu objetivo, seu nível, a idade do aluno e o melhor horário. Eu indico o curso certo.</p></div></li>
+          <li><div><h3>Você recebe a cotação</h3><p>Com o valor e os horários disponíveis. Gostou, é só escolher o dia da primeira aula.</p></div></li>
+        </ol>
+        <div class="urgencia">
+          <img src="img/felipe_retrato.webp" alt="Felipe Santos">
+          <p>Eu acompanho cada aluno de perto, então os horários são poucos. Quem chama primeiro escolhe primeiro.</p>
+        </div>
+      </div>
+      <form class="montador" id="montador" novalidate>
+        <h3>Monte sua mensagem</h3>
+        <p class="dica">Marque o que combina com você. A mensagem fica pronta para enviar.</p>
+        <fieldset>
+          <legend>Quais aulas?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="curso" value="Teoria Musical" id="c-teoria"><span>Teoria Musical</span></label>
+            <label class="chip"><input type="checkbox" name="curso" value="Teclado" id="c-teclado"><span>Teclado</span></label>
+            <label class="chip"><input type="checkbox" name="curso" value="Violão" id="c-violao"><span>Violão</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Para quem?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="quem" value="para mim" id="q-mim" checked><span>Para mim</span></label>
+            <label class="chip"><input type="radio" name="quem" value="para meu filho ou filha" id="q-filho"><span>Para meu filho ou filha</span></label>
+            <label class="chip"><input type="radio" name="quem" value="para outra pessoa" id="q-outro"><span>Para outra pessoa</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Nível hoje</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="nivel" value="nunca estudou música" id="n-zero" checked><span>Do zero</span></label>
+            <label class="chip"><input type="radio" name="nivel" value="já toca um pouco" id="n-pouco"><span>Toco um pouco</span></label>
+            <label class="chip"><input type="radio" name="nivel" value="já tem uma boa base" id="n-base"><span>Tenho uma boa base</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Melhor período</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="periodo" value="manhã" id="p-manha"><span>Manhã</span></label>
+            <label class="chip"><input type="checkbox" name="periodo" value="tarde" id="p-tarde"><span>Tarde</span></label>
+            <label class="chip"><input type="checkbox" name="periodo" value="noite" id="p-noite"><span>Noite</span></label>
+            <label class="chip"><input type="checkbox" name="periodo" value="sábado" id="p-sabado"><span>Sábado</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="campo"><label for="nome" style="font-weight:900">Seu nome</label><input id="nome" name="nome" type="text" autocomplete="given-name" placeholder="Como posso te chamar?"></div>
+        </fieldset>
+        <div class="previa" aria-live="polite"><b>Sua mensagem</b><span id="previa-texto"></span></div>
+        <a class="btn btn-zap btn-lg" id="enviar" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Enviar no WhatsApp</a>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DÚVIDAS ===== -->
+<section class="duvidas" id="duvidas" aria-labelledby="t-duvidas">
+  <div class="wrap grade">
+    <div>
+      <span class="plaquinha"><img src="img/rab/asterisco.webp" alt="">Dúvidas</span>
+      <h2 class="titulo-sec" id="t-duvidas">Perguntas que todo mundo faz</h2>
+      <p class="lead">Não achou a sua? Pergunta direto no WhatsApp, eu respondo.</p>
+      <img class="tutor" src="img/barbatus.webp" alt="">
+    </div>
+    <div class="faq">
+      <details open><summary>Preciso saber alguma coisa de música?</summary><div class="resp">Não. O nível 1 de todos os cursos começa do zero, sem pré-requisito. Se você já toca, a gente faz um nivelamento e você entra no ponto certo.</div></details>
+      <details><summary>As aulas são para crianças ou para adultos?</summary><div class="resp">Para os dois. Os personagens deixam o caminho leve para as crianças, e o conteúdo é completo para os adultos: vai até harmonia avançada, arranjo e composição.</div></details>
+      <details><summary>Preciso ter o instrumento em casa?</summary><div class="resp">Para Teclado e Violão, sim. O estudo recomendado é de 20 a 30 minutos por dia no nível 1. Se ainda não tem, me chama que eu te ajudo a escolher um bom instrumento para começar.</div></details>
+      <details><summary>Posso fazer Teoria junto com o instrumento?</summary><div class="resp">Pode e eu recomendo. Teclado 1 ou Violão 1 junto com Teoria 1, e assim por diante: o que você entende na teoria aparece no instrumento na mesma semana.</div></details>
+      <details><summary>Quanto tempo dura cada curso?</summary><div class="resp">Teoria: 6 meses por nível, uma aula de 1h por semana (24 aulas). Teclado e Violão: 12 meses por nível, uma aula de 1h por semana (48 aulas), com recitais internos no caminho.</div></details>
+      <details><summary>Como acompanho o progresso?</summary><div class="resp">Tarefa e plano de estudo em toda aula, vídeo curto de tarefa para correção no instrumento, recitais internos, avaliações no fim de cada etapa e selos de conquista. O material de apoio fica na plataforma do aluno.</div></details>
+      <details><summary>Quanto custa?</summary><div class="resp">O valor depende do curso, da frequência e do formato. Me chama no WhatsApp que eu mando a cotação certinha para você, sem compromisso.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL ===== -->
+<section class="final" aria-labelledby="t-final">
+  <div class="wrap">
+    <div class="placa">
+      <div>
+        <span class="plaquinha"><img src="img/rab/estrela-amarela.webp" alt="">Sua vez</span>
+        <h2 id="t-final" style="margin-top:.5em">Toda nota tem uma história. A sua começa com um "oi".</h2>
+        <p class="sub">Me manda uma mensagem e conta o que você quer tocar. Eu respondo pessoalmente com a cotação e os horários livres.</p>
+        <div class="turminha" aria-hidden="true">
+          <img src="img/barbatus.webp" alt=""><img src="img/delio.webp" alt=""><img src="img/snob.webp" alt=""><img src="img/lia.webp" alt=""><img src="img/tulio.webp" alt="">
+        </div>
+      </div>
+      <div class="contato">
+        <div class="numero-zap">
+          <img src="img/felipe_retrato.webp" alt="">
+          <div><small>Atendimento pelo WhatsApp</small><span class="n">Falo com você pessoalmente</span></div>
+        </div>
+        <a class="btn btn-zap btn-lg js-zap" data-curso="" href="#comecar"><svg aria-hidden="true"><use href="#zap"/></svg>Montar minha mensagem</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/assinatura.webp" alt="Fábulas Musicais" width="111" height="52">
+    <span class="assin">Do ateliê às estrelas, uma nota de cada vez.</span>
+    <small>© 2026 Fábulas Musicais · Felipe Santos</small>
+  </div>
+</footer>
+
+<a class="flutua js-zap" data-curso="" href="#" target="_blank" rel="noopener" aria-label="Chamar o Felipe no WhatsApp"><svg aria-hidden="true"><use href="#zap"/></svg><span class="bolha">Fala comigo!</span></a>
+
+<script>
+/* ====== CONFIGURAÇÃO ====== */
+const WHATSAPP = "5511960856323";
+const VIDEO = { arquivo: "", youtube: "" }; // preencha um dos dois quando o vídeo ficar pronto
+
+const msgBase = curso => "Olá, Felipe! Vim pelo site das Fábulas Musicais e quero uma cotação" + (curso ? " para as aulas de " + curso : " para as aulas") + ".";
+const linkZap = texto => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(texto);
+/* todo botão de WhatsApp passa antes pelo montador de mensagem (Como começar) */
+function ligarBotoes(raiz){ (raiz||document).querySelectorAll(".js-zap").forEach(a => { a.href = "#comecar"; a.removeAttribute("target"); a.removeAttribute("rel"); }); }
+
+/* ====== título recortado: materiais na ordem das letras do logo ====== */
+const TEX = [["01","#DF5041"],["02","#F1C24A"],["04","#9B65B5"],["05","#56B4D4"],["06","#72AF52"],["07","#A84C9E"],["08","#DDB449"],["09","#E47697"],["10","#72AF52"],["11","#E67B37"],["12","#4699CD"],["13","#A84C9E"],["14","#DDB449"],["15","#DF5041"],["16","#4699CD"]];
+function recorte(txt, inicio){ let i = inicio||0; return '<span class="recorte" aria-label="'+txt+'">' + [...txt].map(ch => { if(ch===" ") return '<span style="width:.3em"></span>'; const [t,c]=TEX[i++%TEX.length]; return '<span aria-hidden="true" style="--t:url(img/tex/'+t+'.webp);--c:'+c+'">'+ch+'</span>'; }).join("") + '</span>'; }
+
+/* ====== a turma ====== */
+const TURMA = [
+  {k:"delio",nome:"Délio",esp:"Lontra · pandeiro",tex:"05",cor:"#56B4D4",papel:"Tímido e gentil, pensa alto e erra junto com o aluno. Mostra que errar faz parte do caminho.",fala:"Eu… acho que é um Sol? Posso tentar de novo?"},
+  {k:"lia",nome:"Lia",esp:"Flamingo · microfone",tex:"09",cor:"#E47697",papel:"A voz e a energia da turma. Alegre e comunicativa, puxa todo mundo para cantar.",fala:"Bora! Agora todo mundo junto, no tempo!"},
+  {k:"snob",nome:"Snob Portenho",esp:"Suricato · batuta e livro",tex:"01",cor:"#DF5041",papel:"O sabe-tudo da teoria. Vaidoso, culto e preciso, adora uma regra bem explicada.",fala:"Naturalmente, a armadura com dois sustenidos é Ré maior. Elementar."},
+  {k:"barbatus",nome:"Sr. Barbatus",esp:"Sagui-imperador · violão",tex:"06",cor:"#72AF52",papel:"O mentor. Sábio e acolhedor, conta histórias devagar e ensina com paciência.",fala:"Quando eu era jovem, aprendi este acorde devagar. Devagar a gente aprende para sempre."},
+  {k:"tulio",nome:"Túlio",esp:"Burro · tambor",tex:"08",cor:"#DDB449",papel:"O pulso da turma. Tranquilo e bem-humorado, lembra que o tempo não tem pressa.",fala:"Calma. Um, dois, três, quatro. O tempo não foge."}
+];
+document.getElementById("trilho").innerHTML = TURMA.map(p => `
+  <article class="ficha" style="--t:url(img/tex/${p.tex}.webp);--c:${p.cor}">
+    <div class="fundo"><img src="img/${p.k}.webp" alt="${p.nome}"></div>
+    <div class="info"><span class="especie">${p.esp}</span><h3>${p.nome}</h3><p class="papel">${p.papel}</p><blockquote>${p.fala}</blockquote></div>
+  </article>`).join("");
+
+/* ====== cursos (fonte: conteúdo programático de Teoria, Teclado e Violão) ====== */
+const AULA_TEORIA = [["Correção da tarefa",10,"#F1C24A"],["Conteúdo novo",25,"#56B4D4"],["Percepção e solfejo",15,"#E47697"],["Exercício e tarefa",10,"#72AF52"]];
+const AULA_INSTR = [["Aquecimento e técnica",10,"#F1C24A"],["Correção da tarefa",10,"#E67B37"],["Conteúdo novo",20,"#56B4D4"],["Repertório",15,"#E47697"],["Tarefa e plano",5,"#72AF52"]];
+const CURSOS = {
+  teoria:{nome:"Teoria Musical",curto:"Teoria",guia:"snob",guiaNome:"Snob Portenho",
+    fala:"Partitura não é bicho de sete cabeças. Comigo você lê, escreve e entende o que toca.",
+    resumo:"Aprenda a ler, escrever e entender música de verdade. A base que faz qualquer instrumento ficar mais fácil.",
+    pilulas:["3 níveis de 6 meses","24 aulas por nível","1h por semana","72 aulas no total"],
+    aula:AULA_TEORIA,min:60,
+    niveis:[
+      {cls:"atelie",etq:"Nível 1 – Ateliê",tit:"Teoria 1 · Básico",dur:"6 meses · sem pré-requisito",itens:["Ler e escrever notas nas claves de sol e fá","Ritmo com figuras até a semicolcheia, em compassos simples e compostos","As 15 escalas maiores, suas relativas menores e as armaduras","Intervalos, tríades e o campo harmônico maior","Cifrar e analisar uma canção simples"],fim:"Lê e escreve partituras simples e reconhece qualquer tonalidade pela armadura."},
+      {cls:"floresta",etq:"Nível 2 – Floresta",tit:"Teoria 2 · Intermediário",dur:"6 meses · após a Teoria 1",itens:["Tétrades e as funções tônica, subdominante e dominante","Escrita a quatro vozes sem erros de condução","Cadências, dominantes secundárias e empréstimo modal","Modulação para tons vizinhos","Os sete modos e as formas binária, ternária e rondó"],fim:"Harmoniza uma melodia a quatro vozes e analisa corais e canções."},
+      {cls:"espaco",etq:"Nível 3 – Espaço",tit:"Teoria 3 · Avançado",dur:"6 meses · após a Teoria 2",itens:["Harmonia cromática: napolitana, sextas aumentadas e SubV7","Contraponto nas cinco espécies e exposição de fuga","Forma sonata e as grandes formas","Rearmonização e relação escala-acorde","Linguagens do século XX e arranjo para coro ou conjunto"],fim:"Analisa obras completas e escreve um arranjo ou composição própria."}
+    ],selos:true},
+  teclado:{nome:"Teclado",curto:"Teclado",guia:"delio",guiaNome:"Délio",
+    fala:"Eu também achava que nunca ia tocar com as duas mãos. Na terceira semana, toquei!",
+    resumo:"Do primeiro contato com as teclas a tocar em banda, piano solo e direção musical. Música real desde a primeira aula.",
+    pilulas:["3 níveis de 12 meses","48 aulas por nível","1h por semana","Recitais internos"],
+    aula:AULA_INSTR,min:60,
+    niveis:[
+      {cls:"atelie",etq:"Nível 1 – Ateliê",tit:"Teclado 1 · Básico",dur:"12 meses · nunca tocou? começa aqui",itens:["Postura, dedilhado e as duas mãos independentes","Leitura de partituras fáceis nas claves de sol e fá","Escalas maiores e menores com passagem do polegar","Acordes com inversões, sem \"pular\" com a mão","Cifra e ritmos de balada, valsa, pop, baião e louvor","Recursos do teclado arranjador: ritmos, split e layer"],fim:"Toca com as duas mãos, lê partituras fáceis e acompanha canções cifradas em vários ritmos e tons."},
+      {cls:"floresta",etq:"Nível 2 – Floresta",tit:"Teclado 2 · Intermediário",dur:"12 meses · após o Teclado 1",itens:["Tétrades, tensões e voicings, com ii–V–I em todos os tons","Bossa nova, samba, baião e louvor com pad e transições","Improvisação com pentatônica, blues e modos","Rearmonização com dominantes secundárias e SubV7","Tocar com banda, click e playback"],fim:"Toca em banda com click, tira músicas de ouvido e monta o próprio arranjo."},
+      {cls:"espaco",etq:"Nível 3 – Espaço",tit:"Teclado 3 · Avançado",dur:"12 meses · após o Teclado 2",itens:["Rootless, drop 2, quartas e upper structures","Improvisação jazzística e comping","Choro, samba-jazz, gospel moderno e neo-soul","Piano solo, síntese sonora e setup de palco","Arranjo, produção e direção musical"],fim:"Toca piano solo e em qualquer formação, programa seus timbres e dirige uma banda."}
+    ]},
+  violao:{nome:"Violão",curto:"Violão",guia:"barbatus",guiaNome:"Sr. Barbatus",
+    fala:"Pegue o violão com calma. Primeiro um acorde, depois uma canção inteira.",
+    resumo:"Da primeira batida ao violão solo, com acordes, dedilhados e os ritmos brasileiros e de louvor. Vale para náilon e aço.",
+    pilulas:["3 níveis de 12 meses","48 aulas por nível","1h por semana","Recitais internos"],
+    aula:AULA_INSTR,min:60,
+    niveis:[
+      {cls:"atelie",etq:"Nível 1 – Ateliê",tit:"Violão 1 · Básico",dur:"12 meses · nunca tocou? começa aqui",itens:["Postura, afinação e as duas mãos sem tensão","Acordes abertos e trocas no tempo","Cifra, tablatura e partitura na 1ª posição","Pestana e capotraste para tocar em qualquer tom","Batidas e dedilhados de balada, pop, rock, baião e louvor"],fim:"Acompanha canções cifradas com batida e dedilhado e lê melodias simples."},
+      {cls:"floresta",etq:"Nível 2 – Floresta",tit:"Violão 2 · Intermediário",dur:"12 meses · após o Violão 1",itens:["O braço inteiro pelo sistema CAGED","Tétrades, drop 2, drop 3 e tensões","Bossa nova, samba, ijexá e levadas de louvor","Improvisação e fingerstyle","Rearmonização e tocar em banda com click"],fim:"Toca em banda com click, tira músicas de ouvido e monta o próprio arranjo."},
+      {cls:"espaco",etq:"Nível 3 – Espaço",tit:"Violão 3 · Avançado",dur:"12 meses · após o Violão 2",itens:["Voicings avançados e dominantes alteradas","Choro, baixarias e violão de 7 cordas","Chord melody e violão solo","Gravação do próprio violão e setup de palco","Arranjo para banda e direção musical"],fim:"Toca violão solo e em qualquer formação, grava o próprio instrumento e dirige uma banda."}
+    ]}
+};
+const MARCAS = ["estrela-amarela","colcheia","estrela-azul","asterisco","colcheias-ligadas","ponto"];
+function painel(id){
+  const c = CURSOS[id];
+  const barra = c.aula.map(([n,m,cor]) => `<div style="flex:${m};background:${cor}" title="${n}: ${m} min">${m}′</div>`).join("");
+  const leg = c.aula.map(([n,m,cor]) => `<span style="flex:${m};--c:${cor}">${n}</span>`).join("");
+  const niveis = c.niveis.map((n,i) => `
+    <article class="nivel ${n.cls}">
+      <div class="topo-nivel"><span class="etq">${n.etq}</span><h3>${n.tit}</h3></div>
+      <div class="corpo">
+        <span class="dur">${n.dur}</span>
+        <ul>${n.itens.map((t,j)=>`<li><img src="img/rab/${MARCAS[(i+j)%MARCAS.length]}.webp" alt=""><span>${t}</span></li>`).join("")}</ul>
+        <div class="final"><b>Ao concluir, você</b>${n.fim.charAt(0).toLowerCase()+n.fim.slice(1)}</div>
+      </div>
+    </article>`).join("");
+  const selos = c.selos ? `<div class="selos"><p>Em Teoria 1, cada aula vale um selo de conquista. São 24, do Pulso ao Grande Recital.</p><div class="linha">${Array.from({length:24},(_,i)=>`<img src="img/selos/selo_${String(i+1).padStart(2,"0")}.webp" alt="Selo da aula ${i+1}">`).join("")}</div></div>` : "";
+  document.getElementById("painel").innerHTML = `
+    <div class="painel-topo">
+      <div>${recorte(c.curto.toUpperCase(), id==="teoria"?0:id==="teclado"?5:9)}
+        <p class="resumo">${c.resumo}</p>
+        <div class="pilulas">${c.pilulas.map(p=>`<span class="pilula">${p}</span>`).join("")}</div>
+      </div>
+      <div class="guia"><img src="img/${c.guia}.webp" alt="${c.guiaNome}"><div class="balao"><b>${c.guiaNome}</b>${c.fala}</div></div>
+    </div>
+    <div class="aula-tempo"><h4>Como é uma aula de ${c.min===90?"1h30":"1h"}</h4><div class="barra">${barra}</div><div class="barra-leg">${leg}</div></div>
+    <div class="niveis">${niveis}</div>
+    ${selos}
+    <div class="painel-cta">
+      <a class="btn btn-zap btn-lg js-pre" data-curso="${c.nome}" href="#comecar"><svg aria-hidden="true"><use href="#zap"/></svg>Quero cotação de ${c.nome}</a>
+      <p>${id==="teoria" ? "Dica: faça Teoria junto com Teclado ou Violão. Uma ajuda a outra." : "Dica: faça junto com a Teoria do mesmo nível. Uma ajuda a outra."}</p>
+    </div>`;
+  ligarBotoes(document.getElementById("painel"));
+}
+const abas = document.getElementById("abas");
+abas.innerHTML = Object.entries(CURSOS).map(([id,c],i) => `<button class="aba" role="tab" id="aba-${id}" aria-controls="painel" aria-selected="${i===0}" data-id="${id}" tabindex="${i===0?0:-1}"><img src="img/${c.guia}_c.webp" alt="">${c.nome}</button>`).join("");
+function escolher(id, foco){
+  abas.querySelectorAll(".aba").forEach(b => { const on = b.dataset.id===id; b.setAttribute("aria-selected",on); b.tabIndex = on?0:-1; if(on&&foco) b.focus(); });
+  document.getElementById("painel").setAttribute("aria-labelledby","aba-"+id);
+  painel(id);
+  try{ localStorage.setItem("fm-curso",id); }catch(e){}
+}
+abas.addEventListener("click", e => { const b = e.target.closest(".aba"); if(b) escolher(b.dataset.id); });
+abas.addEventListener("keydown", e => {
+  const ids = Object.keys(CURSOS), atual = abas.querySelector('[aria-selected="true"]').dataset.id;
+  let i = ids.indexOf(atual);
+  if(e.key==="ArrowRight") i=(i+1)%ids.length; else if(e.key==="ArrowLeft") i=(i-1+ids.length)%ids.length; else return;
+  e.preventDefault(); escolher(ids[i], true);
+});
+let inicial = "teoria"; try{ const s = localStorage.getItem("fm-curso"); if(s && CURSOS[s]) inicial = s; }catch(e){}
+escolher(inicial);
+
+/* ====== montador de mensagem ====== */
+const form = document.getElementById("montador");
+function lista(arr){ return arr.length<2 ? arr.join("") : arr.slice(0,-1).join(", ") + " e " + arr[arr.length-1]; }
+function montar(){
+  const f = new FormData(form);
+  const cursos = f.getAll("curso"), periodos = f.getAll("periodo");
+  const nome = (f.get("nome")||"").trim(), quem = f.get("quem"), nivel = f.get("nivel");
+  let t = "Olá, Felipe! Vim pelo site das Fábulas Musicais.";
+  if(nome) t += " Meu nome é " + nome + ".";
+  t += " Quero uma cotação para aulas de " + (cursos.length ? lista(cursos) : "música") + ", " + quem + ".";
+  const sujeito = quem==="para mim" ? "Eu" : "O aluno";
+  const niv = quem==="para mim" ? nivel.replace("estudou","estudei").replace("já toca","já toco").replace("já tem","já tenho") : nivel;
+  t += " Nível: " + sujeito.toLowerCase() + " " + niv + ".";
+  if(periodos.length) t += " Melhor período: " + lista(periodos) + ".";
+  document.getElementById("previa-texto").textContent = t;
+  document.getElementById("enviar").href = linkZap(t);
+}
+form.addEventListener("input", montar); form.addEventListener("change", montar);
+form.addEventListener("submit", e => e.preventDefault());
+montar();
+
+/* botões de cotação de cada curso: levam ao montador já com o curso marcado */
+document.addEventListener("click", e => {
+  const a = e.target.closest(".js-pre"); if(!a) return;
+  form.querySelectorAll('input[name="curso"]').forEach(i => { if(i.value === a.dataset.curso) i.checked = true; });
+  montar();
+});
+
+/* ====== copiar número ====== */
+
+
+/* ====== vídeo ====== */
+(function(){
+  const slot = document.getElementById("lousa-slot");
+  if(VIDEO.arquivo){
+    slot.innerHTML = '<video controls playsinline preload="metadata" src="'+VIDEO.arquivo+'"></video>';
+  } else if(VIDEO.youtube){
+    slot.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+VIDEO.youtube+'?rel=0" title="Vídeo de apresentação" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  } else {
+    document.getElementById("tela-video").addEventListener("click", () => {
+      const aviso = document.getElementById("tela-aviso");
+      aviso.textContent = "Ainda estamos gravando! Me chama no WhatsApp e eu te conto tudo.";
+    });
+  }
+})();
+
+ligarBotoes();
+</script>
+
+</body>
+</html>
